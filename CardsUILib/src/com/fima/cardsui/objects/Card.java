@@ -18,6 +18,7 @@ public abstract class Card extends AbstractCard {
 
 	private OnCardSwiped onCardSwipedListener;
 	private OnClickListener mListener;
+	private Boolean mSwipeable;
 	protected View mCardLayout;
 
 	public Card() {
@@ -123,6 +124,14 @@ public abstract class Card extends AbstractCard {
 		view.setLayoutParams(lp);
 
 		return view;
+	}
+
+	public void setSwipeable(boolean b) {
+		mSwipeable = b;
+	}
+
+	public Boolean isSwipeable() {
+		return mSwipeable;
 	}
 
 	public abstract View getCardContent(Context context);

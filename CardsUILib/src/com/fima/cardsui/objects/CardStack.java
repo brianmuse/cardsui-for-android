@@ -31,6 +31,7 @@ public class CardStack extends AbstractCard {
 	private int mPosition;
 	private Context mContext;
 	private CardStack mStack;
+	private Boolean mSwipeable;
 
 	public CardStack() {
 		cards = new ArrayList<Card>();
@@ -52,7 +53,7 @@ public class CardStack extends AbstractCard {
 	}
 
 	@Override
-	public View getView(Context context, boolean swipable) {
+	public View getView(Context context, boolean adapterIsSwipeable) {
 
 		mContext = context;
 
@@ -110,7 +111,10 @@ public class CardStack extends AbstractCard {
 
 			cardView.setLayoutParams(lp);
 			
-			if (swipable){
+			if (card.isSwipeable() == Boolean.TRUE || 
+					(mSwipeable == Boolean.TRUE && card.isSwipeable() == null) || 
+					(adapterIsSwipeable && mSwipeable == null && card.isSwipeable() == null)) {
+				
 				cardView.setOnTouchListener(new SwipeDismissTouchListener(
 						cardView, card, new OnDismissCallback() {
 							
@@ -151,6 +155,10 @@ public class CardStack extends AbstractCard {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public void setSwipeable(boolean b) {
+		mSwipeable = b;
 	}
 
 	private OnClickListener getClickListener(final CardStack cardStack,
