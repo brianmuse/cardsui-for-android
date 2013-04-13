@@ -83,23 +83,18 @@ public class CardStack extends AbstractCard {
 
 			int topPx = 0;
 
-			if (lastCardPosition == i) {
+			if(0 == i) {
+				// first card
+				cardView = card.getViewFirst(context);
+				cardView.setOnClickListener(getClickListener(this, container, i));
+			} else if (lastCardPosition == i) {
 				// last card
 				cardView = card.getViewLast(context);
 				cardView.setOnClickListener(card.getClickListener());
 			} else {
-				if (0 == i) {
-					// first card
-					cardView = card.getViewFirst(context);
-
-				} else {
-					// any other card
-					cardView = card.getView(context);
-
-				}
-
+				// any other card
+				cardView = card.getView(context);
 				cardView.setOnClickListener(getClickListener(this, container, i));
-
 			}
 
 			if (i > 0) {
