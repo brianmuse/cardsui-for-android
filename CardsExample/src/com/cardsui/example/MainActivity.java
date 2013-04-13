@@ -25,7 +25,11 @@ public class MainActivity extends Activity {
 
 		// add AndroidViews Cards
 		mCardView.addCard(new MyCard("Get the CardsUI view"));
-		mCardView.addCardToLastStack(new MyCard("for Android at"));
+		
+		MyCard swipeableCard = new MyCard("for Android at");
+		swipeableCard.setSwipeable(true);
+		mCardView.addCardToLastStack(swipeableCard);
+		
 		MyCard androidViewsCard = new MyCard("www.androidviews.net");
 		androidViewsCard.setOnClickListener(new OnClickListener() {
 
@@ -38,6 +42,9 @@ public class MainActivity extends Activity {
 			}
 		});
 		mCardView.addCardToLastStack(androidViewsCard);
+
+		// add just one card
+		mCardView.addCard(new MyCard("1 card"));
 
 		// add one card, and then add another one to the last stack.
 		mCardView.addCard(new MyCard("2 cards"));
@@ -52,7 +59,8 @@ public class MainActivity extends Activity {
 		// create a stack
 		CardStack stack = new CardStack();
 		stack.setTitle("title test");
-
+		stack.setSwipeable(true);
+		
 		// add 3 cards to stack
 		stack.add(new MyCard("3 cards"));
 		stack.add(new MyCard("3 cards"));
